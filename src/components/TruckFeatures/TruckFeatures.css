@@ -1,0 +1,22 @@
+.bages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.bage-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 12px 18px;
+  min-width: 87px;
+  height: 48px;
+  background: #f2f4f7;
+}
+
+.features {
+  padding-bottom: 24px;
+}

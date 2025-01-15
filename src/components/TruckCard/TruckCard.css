@@ -1,0 +1,56 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  padding: 24px;
+  width: 888px;
+  height: 368px;
+  background-color: #fff;
+}
+
+.card img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.info {
+  padding-left: 24px;
+}
+
+.info p {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  height: fit-content;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding-bottom: 24px;
+  font-size: 16px;
+}
+
+.descripton {
+  width: 525px;
+  padding-bottom: 24px;
+  color: #475467;
+}
+
+.descripton p {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
