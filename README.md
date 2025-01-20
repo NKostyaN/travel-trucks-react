@@ -1,8 +1,15 @@
-# React + Vite
+# TravelTrucks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Фронтенд частина веб-додатку для компанії **TravelTrucks**, яка займається орендою кемперів. Веб-додаток включає кілька сторінок, серед яких домашня сторінка, сторінка каталогу, сторінка окремого кемпера з відгуками і формою для бронювання та сторінка улюблених.
 
-Currently, two official plugins are available:
+Для реалізації функціоналу роботи з оголошеннями використовується готовий бекенд API, який доступний за посиланням: https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Для локального запуску додатку необхідно склонувати репозиторій
+> https://github.com/NKostyaN/travel-trucks-react.git
+
+Виконати 
+> npm install
+
+та
+
+> npm run dev
