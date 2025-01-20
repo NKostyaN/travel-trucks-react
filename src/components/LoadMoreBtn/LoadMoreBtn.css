@@ -1,0 +1,27 @@
+.load-more button {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #101828;
+
+  background: none;
+  cursor: pointer;
+  min-width: 145px;
+  border-radius: 200px;
+  transition: background-color 0.2s;
+
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+}
+
+.load-more button:hover {
+  color: #fff;
+  border: 1px solid #d84343;
+  background-color: #d84343;
+}
+
+.load-more button:focus,
+.load-more button:focus-visible {
+  outline: 2px auto -webkit-focus-ring-color;
+}

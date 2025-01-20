@@ -1,85 +1,71 @@
+import "./CatalogPage.css";
 import FilterPanel from "../components/FilterPanel/FilterPanel";
 import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "../components/Loader/Loader";
-import mockedList from "../data/mocked-data.json";
-import { useState } from "react";
 import TrucksList from "../components/TrucksList/TrucksList";
-// import { useState, useEffect } from "react";
-// import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { reset, selectTrucks, setPage } from "../redux/trucksSlice";
+import { useEffect } from "react";
+import { fetchTrucks } from "../redux/trucksOps";
+import { useSearchParams } from "react-router-dom";
 
 const CatalogPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState(false);
-  const [results, setResults] = useState(mockedList);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
-  // const [query, setQuery] = useState("");
-  // const [page, setPage] = useState(1);
-  // const [totalResults, setTotalResults] = useState(0);
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
 
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const queryValue = searchParams.get("query") ?? "";
+  const page = useSelector((state) => state.trucks.page);
+  const totalResults = useSelector((state) => state.trucks.totalResults);
+  const isLoading = useSelector((state) => state.trucks.loading);
+  const isError = useSelector((state) => state.trucks.error);
 
-  // const search = (query) => {
-  //   setQuery(query);
-  //   setPage(1);
-  //   setResults([]);
-  //   searchParams.set("query", query);
-  //   setSearchParams(searchParams);
-  // };
-  // const getNextPage = () => {
-  //   setPage(page + 1);
-  // };
+  const results = useSelector(selectTrucks);
 
-  // useEffect(() => {
-  //   queryValue && search(queryValue);
-  // }, []);
+  const getNextPage = () => {
+    dispatch(setPage(page + 1));
+  };
 
-  // useEffect(() => {
-  //   const fetchMovies = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       setError(false);
-  //       const [res, total] = await searchMovie(query, page);
+  useEffect(() => {
+    // const params = [];
+    // searchParams.forEach((value, key) => {
+    //   params.push([key, value]);
+    // });
+    // console.log("params", params);
+    dispatch(fetchTrucks({ page, searchParams }));
+    // console.log(searchParams.size);
+    // if (searchParams.size === 0) {
+    //   dispatch(fetchTrucks(page));
+    // } else {
+    //   dispatch(fetchTrucks(page, searchParams));
+    // }
+  }, [dispatch, page, searchParams]);
 
-  //       if (page === 1) {
-  //         setResults(res);
-  //         setTotalResults(total);
-  //       } else {
-  //         setResults((prevRes) => [...prevRes, ...res]);
-  //       }
-  //     } catch (err) {
-  //       setError(true);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   query && fetchMovies();
-  // }, [query, page]);
+  // console.log("res", truks);
+  console.log("page", page);
+  console.log("totalResults", totalResults);
+  // const filteredTrucks = useSelector(selectFilteredTrucks);
 
   return (
     <div className="container">
       <div className="catalog-page">
-        {/* <p>
-          <b>Catalog page</b>
-        </p> */}
-        {/* <SearchBar search={search} queryValue={queryValue} /> */}
-        <FilterPanel />
-        <br />
-        {results.items.length > 0 ? (
-          <TrucksList hits={results.items} />
-        ) : (
-          !isLoading &&
-          // query &&
-          !isError && <p className="loader">No results..</p>
-        )}
-        {isLoading && !isError && <Loader />}
-        {isError && <ErrorMessage />}
-        {results.length > 0 &&
-          results.length < totalResults &&
-          !isLoading &&
-          !isError && <LoadMoreBtn click={getNextPage} />}
+        <FilterPanel className="filters" />
+        <div className="trucks-block">
+          {results?.length > 0 ? (
+            <TrucksList hits={results} />
+          ) : (
+            !isLoading && !isError && <p className="loader">No results..</p>
+          )}
+          {isLoading && !isError && <Loader />}
+          {isError && <ErrorMessage />}
+          {results?.length > 0 &&
+            results?.length < totalResults &&
+            !isLoading &&
+            !isError && <LoadMoreBtn click={getNextPage} />}
+        </div>
       </div>
     </div>
   );

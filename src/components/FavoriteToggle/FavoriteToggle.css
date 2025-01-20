@@ -1,0 +1,16 @@
+.favorite-toggle {
+  cursor: pointer;
+  color: #101828;
+}
+
+.favorite-toggle input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.favorite-toggle input:checked ~ .favorite-btn {
+  fill: #e44848;
+}

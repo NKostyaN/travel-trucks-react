@@ -1,0 +1,42 @@
+.feature-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 44px 52px;
+  width: 631px;
+  height: 588px;
+  background: #f7f7f7;
+}
+
+.feature-list .bage-item {
+  background: #f2f4f7;
+  mix-blend-mode: multiply;
+}
+
+.feature-specs h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin: 0;
+  padding-bottom: 24px;
+}
+
+.feature-specs ul {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #101828;
+}
+
+.feature-specs li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feature-specs p {
+  padding: 8px 0;
+  margin: 0;
+}

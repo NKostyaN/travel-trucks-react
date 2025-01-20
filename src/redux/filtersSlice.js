@@ -1,19 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
+  favorite: "",
+  location: "",
+  transmission: "",
+  engine: "",
+  form: "",
+  AC: false,
+  bathroom: false,
+  kitchen: false,
+  TV: false,
+  radio: false,
+  refrigerator: false,
+  microwave: false,
+  gas: false,
+  water: false,
 };
 
 const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    changeFilter: (state, action) => {
-      state.name = action.payload;
+    changeLocationFilter: (state, action) => {
+      state.location = action.payload;
     },
+    changeFilter: (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
+    // changeTypeFilter: (state, action) => {
+    //   return {
+    //     ...state,
+    //     ...action.payload,
+    //   };
+    // },
   },
 });
 
-export const selectFilterName = (state) => state.filters.name;
+export const selectFilter = (state) => state.filters;
 export const filtersReducer = filtersSlice.reducer;
-export const { changeFilter } = filtersSlice.actions;
+
+export const { changeLocationFilter, changeFilter } = filtersSlice.actions;

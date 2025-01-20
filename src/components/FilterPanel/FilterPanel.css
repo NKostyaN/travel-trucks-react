@@ -1,42 +1,52 @@
 .filter-block {
   width: 488px;
   padding: 0 64px;
-}
-
-.filter-block p {
   margin: 0;
 }
 
+.filter-p {
+  font-weight: 500;
+  font-size: 16px;
+  color: #475467;
+  margin-bottom: 32px;
+}
+
+.filter-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin-bottom: 24px;
+}
+
 .filter-location {
+  height: 88px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  /* border: 1px solid #dadde1; */
+  /* padding: 18px 218px 18px 20px;
+width: 360px;
+height: 56px; */
+}
+
+.location-p {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: #6c717b;
-  /* background: #f7f7f7; */
-  border-radius: 12px;
-  height: 88px;
-  margin-bottom: 40px;
-  border: 1px solid #dadde1;
-}
-
-.filter-block p {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #475467;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .filter-equipment {
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
-  /* background: #f7f7f7; */
-  border-radius: 12px;
-  height: 272px;
+  /* height: 272px; */
   font-weight: 600;
   margin-bottom: 32px;
-  border: 1px solid #dadde1;
+  /* background: #f7f7f7; */
+  /* border: 1px solid #dadde1; */
 }
 
 .filter-type {
@@ -44,15 +54,15 @@
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
-  /* background: #f7f7f7; */
-  border-radius: 12px;
-  height: 168px;
+  /* height: 168px; */
   margin-bottom: 40px;
-  border: 1px solid #dadde1;
+  /* background: #f7f7f7; */
+  /* border: 1px solid #dadde1; */
 }
 
 .filter-block hr {
-  margin: 0;
+  margin-bottom: 24px;
   padding: 0;
-  color: #dadde1;
+  /* color: #dadde1; */
+  border: 1px solid #dadde1;
 }

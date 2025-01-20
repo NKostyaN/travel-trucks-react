@@ -1,65 +1,70 @@
-// import MovieDetails from "../components/MovieDetails/MovieDetails";
-import Loader from "../components/Loader/Loader";
+import "./TruckDetailsPage.css";
+import { useEffect, Suspense } from "react";
+import { NavLink, Outlet, useParams } from "react-router-dom";
+import BookingForm from "../components/BookingForm/BookingForm";
+import TruckDetailCard from "../components/TruckDetailCard/TruckDetailCard";
 import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
-import { useEffect, useState, useRef, Suspense } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getTruck } from "../redux/trucksOps";
+import { selectTruck } from "../redux/trucksSlice";
 
 const TruckDetailsPage = () => {
-  // const { movieId } = useParams();
-  const [result, setResults] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setError] = useState(false);
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const location = useLocation();
-  const backPath = useRef(location.state);
+  const item = useSelector(selectTruck);
+  const isLoading = useSelector((state) => state.trucks.loading);
+  const isError = useSelector((state) => state.trucks.error);
 
-  // useEffect(() => {
-  //   const fetchMovie = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       setError(false);
-  //       const res = await getMovie(movieId);
-  //       setResults(res);
-  //     } catch (err) {
-  //       setError(true);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   movieId && fetchMovie();
-  // }, [movieId]);
+  useEffect(() => {
+    dispatch(getTruck(id));
+  }, [dispatch]);
 
   return (
     <div className="container">
-      <Link to={backPath.current ?? "/movies"}>
-        <button>&lArr; Back</button>
-      </Link>
-      {result && <MovieDetails item={result} />}
-      {isLoading && !isError && <Loader />}
-      {isError && <ErrorMessage />}
-      {result && (
-        <div>
-          <p>Additional info:</p>
-          <ul>
-            <li>
-              <Link to="cast">
-                • <u>Cast</u>
-              </Link>
-            </li>
-            <li>
-              <Link to="reviews">
-                • <u>Reviews</u>
-              </Link>
-            </li>
-          </ul>
+      <div className="details-page">
+        {Object.keys(item).length != 0 ? (
+          <TruckDetailCard item={item} />
+        ) : (
+          !isLoading && !isError && <p className="loader">No results..</p>
+        )}
+        {isLoading && !isError && <Loader />}
+        {isError && <ErrorMessage />}
+        <nav>
+          <NavLink to="features">
+            Features<span className="selected"></span>
+          </NavLink>
+          <NavLink to="reviews">
+            Reviews<span className="selected"></span>
+          </NavLink>
+        </nav>
+        <hr />
+        <div className="bottom-part">
+          <div className="left-part">
+            <Suspense fallback={<h1>LOADING Outlet...</h1>}>
+              <Outlet />
+            </Suspense>
+          </div>
+          <BookingForm />
         </div>
-      )}
-      <hr />
-      <Suspense fallback={<h1>LOADING Outlet...</h1>}>
-        <Outlet />
-      </Suspense>
+      </div>
     </div>
   );
 };
 
 export default TruckDetailsPage;
+
+// {
+//   results?.length > 0 ? (
+//     <TrucksList hits={results} />
+//   ) : (
+//     !isLoading && !isError && <p className="loader">No results..</p>
+//   );
+// }
+// {
+//   isLoading && !isError && <Loader />;
+// }
+// {
+//   isError && <ErrorMessage />;
+// }

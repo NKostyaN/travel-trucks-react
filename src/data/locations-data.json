@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "location": "Ukraine, Dnipro"
+    },
+    {
+      "id": "2",
+      "location": "Ukraine, Kharkiv"
+    },
+    {
+      "id": "3",
+      "location": "Ukraine, Kyiv"
+    },
+    {
+      "id": "4",
+      "location": "Ukraine, Lviv"
+    },
+    {
+      "id": "5",
+      "location": "Ukraine, Odesa"
+    },
+    {
+      "id": "6",
+      "location": "Ukraine, Poltava"
+    },
+    {
+      "id": "7",
+      "location": "Ukraine, Sumy"
+    }
+  ]
+}

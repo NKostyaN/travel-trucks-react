@@ -1,5 +1,7 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
+// import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+// import { fetchTrucks } from "./redux/trucksOps";
 
 const Navigation = lazy(() => import("./components/Navigation/Navigation"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -10,6 +12,12 @@ const FeatureList = lazy(() => import("./components/FeatureList/FeatureList"));
 const ReviewsList = lazy(() => import("./components/ReviewsList/ReviewsList"));
 
 function App() {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchTrucks());
+  // }, [dispatch]);
+
   return (
     <>
       <Navigation />

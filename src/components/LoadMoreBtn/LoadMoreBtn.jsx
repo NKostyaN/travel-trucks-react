@@ -1,8 +1,9 @@
-const LoadMoreBtn = ({ click }) => {
+import "./LoadMoreBtn.css";
 
+const LoadMoreBtn = ({ click }) => {
   return (
     <div className="load-more">
-      <button onClick={click}>Load more...</button>
+      <button onClick={click}>Load more</button>
     </div>
   );
 };

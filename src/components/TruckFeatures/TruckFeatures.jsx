@@ -2,13 +2,17 @@ import { nanoid } from "nanoid";
 import FeatureItem from "../FeatureItem/FeatureItem";
 import "./TruckFeatures.css";
 
-const TruckFeatures = ({ keys }) => {
+const TruckFeatures = ({ item }) => {
+  const availableFeatures = Object.keys(item).filter(
+    (key) => item[key] === true
+  );
+
   return (
     <div className="bages">
-      {keys.map((el) => (
-        <div key={nanoid()}>
-          <FeatureItem name={el} />
-        </div>
+      <FeatureItem name="transmission" value={item.transmission} />
+      <FeatureItem name="engine" value={item.engine} />
+      {availableFeatures.map((el) => (
+        <FeatureItem value={el} key={nanoid()} />
       ))}
     </div>
   );
