@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTrucks, getTruck } from "./trucksOps";
+import { fetchAll, fetchTrucks, getTruck } from "./trucksOps";
 
 const initialState = {
   items: [],
@@ -25,7 +25,6 @@ const trucksSlice = createSlice({
       state.page = action.payload;
     },
     addToFavorites: (state, action) => {
-      console.log("addToFavorites", action.payload);
       Object.assign(state.favorites, action.payload);
     },
   },
@@ -59,10 +58,21 @@ const trucksSlice = createSlice({
       .addCase(getTruck.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchAll.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAll.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload.items;
+      })
+      .addCase(fetchAll.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
-
 
 export const trucksReducer = trucksSlice.reducer;
 

@@ -1,5 +1,5 @@
 import "./TruckDetailsPage.css";
-import { useEffect, Suspense } from "react";
+import { useEffect, Suspense, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import BookingForm from "../components/BookingForm/BookingForm";
 import TruckDetailCard from "../components/TruckDetailCard/TruckDetailCard";
@@ -8,13 +8,25 @@ import Loader from "../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getTruck } from "../redux/trucksOps";
 import { addToFavorites, selectTruck } from "../redux/trucksSlice";
+import ImageModal from "../components/ImageModal/ImageModal";
 
 const TruckDetailsPage = () => {
+  const [imageToShow, setImageToShow] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (state) => {
+    setModalIsOpen(state);
+  };
+
+  const handleModalShow = (data, state) => {
+    setImageToShow(data);
+    openModal(state);
+  };
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const item = useSelector(selectTruck);
-  // console.log(item);
   const isLoading = useSelector((state) => state.trucks.loading);
   const isError = useSelector((state) => state.trucks.error);
   const favorites = useSelector((state) => state.trucks.favorites);
@@ -43,7 +55,7 @@ const TruckDetailsPage = () => {
     <div className="container">
       <div className="details-page">
         {Object.keys(item).length != 0 ? (
-          <TruckDetailCard item={item} />
+          <TruckDetailCard item={item} showModal={handleModalShow} />
         ) : (
           !isLoading && !isError && <p className="loader">No results..</p>
         )}
@@ -66,23 +78,16 @@ const TruckDetailsPage = () => {
           </div>
           <BookingForm />
         </div>
+        {!isError && (
+          <ImageModal
+            showModal={modalIsOpen}
+            props={imageToShow}
+            handleModal={handleModalShow}
+          />
+        )}
       </div>
     </div>
   );
 };
 
 export default TruckDetailsPage;
-
-// {
-//   results?.length > 0 ? (
-//     <TrucksList hits={results} />
-//   ) : (
-//     !isLoading && !isError && <p className="loader">No results..</p>
-//   );
-// }
-// {
-//   isLoading && !isError && <Loader />;
-// }
-// {
-//   isError && <ErrorMessage />;
-// }

@@ -1,5 +1,5 @@
-import icons from "../../img/icons.svg";
 import "./CustomRadioButton.css";
+import icons from "../../img/icons.svg";
 
 const CustomRadioButton = ({ label, checked, onChange, value }) => {
   return (

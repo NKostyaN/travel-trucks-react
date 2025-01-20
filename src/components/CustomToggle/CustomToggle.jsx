@@ -1,5 +1,5 @@
-import icons from "../../img/icons.svg";
 import "./CustomToggle.css";
+import icons from "../../img/icons.svg";
 
 const CustomToggle = ({ label, checked, onChange, value }) => {
   return (

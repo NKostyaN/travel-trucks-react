@@ -16,12 +16,18 @@
   padding: 0;
 }
 
-.form-title h2{
+.form-title h2 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
   margin: 0;
   padding-bottom: 8px;
 }
 
-.form-title p{
+.form-title p {
+  font-size: 16px;
+  color: #6c717b;
   margin: 0;
   padding-bottom: 24px;
 }

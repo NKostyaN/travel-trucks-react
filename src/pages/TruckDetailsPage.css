@@ -1,4 +1,5 @@
 .details-page {
+  width: 1440px;
   margin: 0;
   padding: 64px;
 }
@@ -35,12 +36,4 @@
   display: flex;
   gap: 40px;
   padding-top: 42px;
-}
-
-.left-part1 {
-  border-radius: 10px;
-  padding: 44px 80px;
-  width: 631px;
-  height: 588px;
-  /* background: #f7f7f7; */
 }

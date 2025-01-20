@@ -1,4 +1,5 @@
 import "./ReviewItem.css";
+import StarsDrawer from "../StarsDrawer/StarsDrawer";
 
 const ReviewItem = ({ item }) => {
   return (
@@ -9,7 +10,7 @@ const ReviewItem = ({ item }) => {
         </div>
         <div className="review-name">
           <p>{item.reviewer_name}</p>
-          <p>Rating: {item.reviewer_rating}</p>
+          <StarsDrawer rating={item.reviewer_rating} />
         </div>
       </div>
       <p className="review-comment">{item.comment}</p>

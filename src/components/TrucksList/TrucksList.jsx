@@ -1,5 +1,5 @@
-import TruckCard from "../TruckCard/TruckCard";
 import "./TrucksList.css";
+import TruckCard from "../TruckCard/TruckCard";
 
 const TrucksList = ({ hits }) => {
   return (

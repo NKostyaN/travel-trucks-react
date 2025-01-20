@@ -42,3 +42,13 @@
   line-height: 1.5;
   color: #475467;
 }
+
+.yellow-star {
+  margin-right: 4px;
+  fill: #ffc531;
+}
+
+.gray-star {
+  margin-right: 4px;
+  fill: #f2f4f7;
+}

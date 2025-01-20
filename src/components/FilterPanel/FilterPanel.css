@@ -22,12 +22,6 @@
 .filter-location {
   height: 88px;
   margin-bottom: 40px;
-  border-radius: 12px;
-  background: #f7f7f7;
-  /* border: 1px solid #dadde1; */
-  /* padding: 18px 218px 18px 20px;
-width: 360px;
-height: 56px; */
 }
 
 .location-p {
@@ -42,11 +36,8 @@ height: 56px; */
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
-  /* height: 272px; */
   font-weight: 600;
   margin-bottom: 32px;
-  /* background: #f7f7f7; */
-  /* border: 1px solid #dadde1; */
 }
 
 .filter-type {
@@ -54,15 +45,30 @@ height: 56px; */
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
-  /* height: 168px; */
   margin-bottom: 40px;
-  /* background: #f7f7f7; */
-  /* border: 1px solid #dadde1; */
 }
 
 .filter-block hr {
   margin-bottom: 24px;
   padding: 0;
-  /* color: #dadde1; */
   border: 1px solid #dadde1;
+}
+
+.location-select {
+  font-size: 16px;
+  color: #101828;
+  border: none;
+  border-radius: 12px;
+  padding: 18px 48px 18px 48px;
+  margin-right: 20px;
+  width: 360px;
+  height: 56px;
+  background: #f7f7f7;
+}
+
+.location-map {
+  position: relative;
+  top: 46px;
+  left: 20px;
+  fill: #101828;
 }

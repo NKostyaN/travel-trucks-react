@@ -11,13 +11,12 @@ import {
   selectTrucks,
   setPage,
 } from "../redux/trucksSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchTrucks } from "../redux/trucksOps";
 import { useSearchParams } from "react-router-dom";
 
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showFavorites, setShowFavorites] =useState();
   const dispatch = useDispatch();
 
   useEffect(() => {

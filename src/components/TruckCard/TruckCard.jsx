@@ -1,7 +1,7 @@
+import "./TruckCard.css";
 import TruckFeatures from "../TruckFeatures/TruckFeatures";
 import { NavLink } from "react-router-dom";
 import icons from "../../img/icons.svg";
-import "./TruckCard.css";
 import FavoriteToggle from "../FavoriteToggle/FavoriteToggle";
 import { useSelector } from "react-redux";
 
@@ -53,7 +53,6 @@ const TruckCard = ({ item }) => {
         </div>
         <NavLink to={`/catalog/${item.id}/features`} target="_blank">
           <button>Show more</button>
-          {/* <button onClick={handleClick}>Show more</button> */}
         </NavLink>
       </div>
     </div>

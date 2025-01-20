@@ -1,9 +1,8 @@
 .hero {
   background: url("../../img/hero.png") no-repeat top left;
-  /* width: 1440px; */
+  width: 1440px;
   height: 696px;
   align-content: center;
-  /* margin-top: 72px; */
   padding-left: 64px;
   color: #f7f7f7;
 }

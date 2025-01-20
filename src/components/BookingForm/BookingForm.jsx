@@ -1,9 +1,7 @@
-import "./ContactForm.css";
+import "./BookingForm.css";
+import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-// import { addContact } from "../../redux/contactsOps";
-import { useState } from "react";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,15 +16,12 @@ const contactSchema = Yup.object().shape({
 });
 
 const BookingForm = () => {
-  const dispatch = useDispatch();
-  // const [bookDate, setBookDate] = useState(new Date());
-
   const handleSubmit = (data, actions) => {
     const contact = {
       name: data.name,
       number: data.number,
     };
-    // dispatch(addContact(contact));
+    toast.success("Form was sent successfully!");
     actions.resetForm();
   };
 
@@ -46,7 +41,6 @@ const BookingForm = () => {
         onSubmit={handleSubmit}
         validationSchema={contactSchema}
       >
-        {/* <Form className="contactForm"> */}
         <Form>
           <label className="form-name">
             <div className="errMsg">
@@ -82,10 +76,24 @@ const BookingForm = () => {
               className="input-comment"
               as="textarea"
               name="comment"
-              placeholder="Comment*"
+              placeholder="Comment"
             />
           </label>
-
+          <div>
+            <Toaster
+              position="bottom-center"
+              toastOptions={{
+                style: {
+                  borderRadius: "10px",
+                  padding: "18px",
+                  width: "527px",
+                  height: "60px",
+                  background: "#f7f7f7",
+                  fontSize: "16px",
+                },
+              }}
+            />
+          </div>
           <button type="submit">Send</button>
         </Form>
       </Formik>

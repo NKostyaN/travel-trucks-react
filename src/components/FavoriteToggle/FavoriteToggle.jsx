@@ -8,9 +8,6 @@ const FavoriteToggle = ({ id, checked, onChange, value }) => {
   const favorites = useSelector((state) => state.trucks.favorites);
   const setFavorite = (event) => {
     dispatch(addToFavorites({ [id]: event.target.checked }));
-    // console.log(`setFavorite [${id}]:`, event.target.checked);
-    // console.log("favorites", favorites);
-    // onChange(event);
   };
 
   return (

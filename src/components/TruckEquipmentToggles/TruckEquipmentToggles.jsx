@@ -20,13 +20,9 @@ const TruckEquipmentToggles = () => {
     );
   };
 
-  // const showFavorite = (event) => {
-  //   console.log("ToggleFavoritesFilter:", event.target.checked);
-  // };
-
   return (
     <div className="equipment-filter">
-      {/* <CustomToggle label="Favorites" value="hart" onChange={showFavorite} /> */}
+      {/* <CustomToggle label="Favorites" value="hart" onChange={showFavorite} />               //TODO: add favorites filter*/}
       <CustomToggle label="Petrol" onChange={setStringKey} value="engine" />
       <CustomToggle label="Diesel" onChange={setStringKey} value="engine" />
       <CustomToggle label="AC" onChange={setBoolKey} value="AC" />

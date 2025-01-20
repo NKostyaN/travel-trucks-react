@@ -17,7 +17,6 @@
 .info {
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   justify-content: space-between;
   padding-left: 24px;
 }
@@ -39,7 +38,6 @@
   font-size: 24px;
   line-height: 1.33333;
   height: fit-content;
-  /* padding-bottom: 8px; */
 }
 
 .price {
@@ -54,7 +52,6 @@
   align-items: center;
   gap: 16px;
   font-size: 16px;
-  /* padding-bottom: 24px; */
 }
 
 .details-rating {
@@ -75,7 +72,6 @@
 .descripton {
   width: 525px;
   color: #475467;
-  /* padding-bottom: 24px; */
 }
 
 .descripton p {

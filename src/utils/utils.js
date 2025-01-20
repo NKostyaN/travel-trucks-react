@@ -1,4 +1,5 @@
 export const camelCaseToWords = (txt) => {
+  if (txt.length <= 2) return txt;
   const res = txt.replace(/([A-Z])/g, " $1");
   return res.charAt(0).toUpperCase() + res.slice(1);
 };

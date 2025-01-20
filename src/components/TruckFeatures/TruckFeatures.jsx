@@ -1,6 +1,6 @@
+import "./TruckFeatures.css";
 import { nanoid } from "nanoid";
 import FeatureItem from "../FeatureItem/FeatureItem";
-import "./TruckFeatures.css";
 
 const TruckFeatures = ({ item }) => {
   const availableFeatures = Object.keys(item).filter(

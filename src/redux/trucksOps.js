@@ -28,3 +28,17 @@ export const getTruck = createAsyncThunk(
     }
   }
 );
+
+export const fetchAll = createAsyncThunk(
+  "trucks/fetchAllTrucks",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
