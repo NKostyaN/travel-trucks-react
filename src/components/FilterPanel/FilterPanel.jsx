@@ -10,27 +10,21 @@ import { changeFilter, selectFilter } from "../../redux/filtersSlice";
 import { filterObject } from "../../utils/utils";
 import { setPage } from "../../redux/trucksSlice";
 
-// const FilterPanel = ({ search, queryValue }) => {
 const FilterPanel = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterValue = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
-    // e.preventDefault();
-
     setSearchParams(filterObject(filterValue));
     dispatch(setPage(1));
-    console.log("filterValue", filterValue);
+    // console.log("filterValue", filterValue);
   };
 
   const [locationValue, setlocationValue] = useState(0);
 
-  const setStringlKey = (event) => {
+  const setStringKey = (event) => {
     setlocationValue(event.target.value);
-    // console.log(event);
-    // console.log(event.target[event.target.value].text);
-    // console.log(event.target.value);
     dispatch(
       changeFilter({
         location:
@@ -45,10 +39,8 @@ const FilterPanel = () => {
         <p className="location-p">Location</p>
         <select
           className="location-select"
-          // id={selectId}
           value={locationValue}
-          // onChange={(evt) => setlocationValue(evt.target.value)}
-          onChange={setStringlKey}
+          onChange={setStringKey}
         >
           <option value={0}>City</option>
           {locations.items.map((loc) => (

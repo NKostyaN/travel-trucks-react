@@ -3,11 +3,13 @@ import { NavLink } from "react-router-dom";
 import icons from "../../img/icons.svg";
 import "./TruckCard.css";
 import FavoriteToggle from "../FavoriteToggle/FavoriteToggle";
+import { useSelector } from "react-redux";
 
 const TruckCard = ({ item }) => {
-  const handleClick = () => {
-    window.scrollTo(0, 0);
-  };
+  const favorites = useSelector((state) => state.trucks.favorites);
+
+  const isFavorite =
+    Object.keys(favorites).includes(item.id) && favorites[item.id];
 
   return (
     <div className="card">
@@ -22,7 +24,7 @@ const TruckCard = ({ item }) => {
           <p>{item.name}</p>
           <div className="price">
             <p>&euro;{item.price},00</p>
-            <FavoriteToggle />
+            <FavoriteToggle id={item.id} checked={isFavorite} />
           </div>
         </div>
         <div className="details">
@@ -50,7 +52,8 @@ const TruckCard = ({ item }) => {
           <TruckFeatures item={item} />
         </div>
         <NavLink to={`/catalog/${item.id}/features`} target="_blank">
-          <button onClick={handleClick}>Show more</button>
+          <button>Show more</button>
+          {/* <button onClick={handleClick}>Show more</button> */}
         </NavLink>
       </div>
     </div>

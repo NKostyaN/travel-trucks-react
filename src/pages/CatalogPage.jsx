@@ -5,23 +5,31 @@ import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "../components/Loader/Loader";
 import TrucksList from "../components/TrucksList/TrucksList";
 import { useDispatch, useSelector } from "react-redux";
-import { reset, selectTrucks, setPage } from "../redux/trucksSlice";
-import { useEffect } from "react";
+import {
+  addToFavorites,
+  reset,
+  selectTrucks,
+  setPage,
+} from "../redux/trucksSlice";
+import { useEffect, useState } from "react";
 import { fetchTrucks } from "../redux/trucksOps";
 import { useSearchParams } from "react-router-dom";
 
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showFavorites, setShowFavorites] =useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(reset());
+    generateFavoritesList();
   }, []);
 
   const page = useSelector((state) => state.trucks.page);
   const totalResults = useSelector((state) => state.trucks.totalResults);
   const isLoading = useSelector((state) => state.trucks.loading);
   const isError = useSelector((state) => state.trucks.error);
+  const favorites = useSelector((state) => state.trucks.favorites);
 
   const results = useSelector(selectTrucks);
 
@@ -30,24 +38,20 @@ const CatalogPage = () => {
   };
 
   useEffect(() => {
-    // const params = [];
-    // searchParams.forEach((value, key) => {
-    //   params.push([key, value]);
-    // });
-    // console.log("params", params);
     dispatch(fetchTrucks({ page, searchParams }));
-    // console.log(searchParams.size);
-    // if (searchParams.size === 0) {
-    //   dispatch(fetchTrucks(page));
-    // } else {
-    //   dispatch(fetchTrucks(page, searchParams));
-    // }
   }, [dispatch, page, searchParams]);
 
-  // console.log("res", truks);
-  console.log("page", page);
-  console.log("totalResults", totalResults);
-  // const filteredTrucks = useSelector(selectFilteredTrucks);
+  const generateFavoritesList = () => {
+    const data = localStorage.getItem("FavoritesTrucks");
+    if (data) {
+      return dispatch(addToFavorites(JSON.parse(data)));
+    }
+    return dispatch(addToFavorites({}));
+  };
+
+  useEffect(() => {
+    localStorage.setItem("FavoritesTrucks", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <div className="container">

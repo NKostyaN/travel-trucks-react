@@ -7,19 +7,37 @@ import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import Loader from "../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getTruck } from "../redux/trucksOps";
-import { selectTruck } from "../redux/trucksSlice";
+import { addToFavorites, selectTruck } from "../redux/trucksSlice";
 
 const TruckDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const item = useSelector(selectTruck);
+  // console.log(item);
   const isLoading = useSelector((state) => state.trucks.loading);
   const isError = useSelector((state) => state.trucks.error);
+  const favorites = useSelector((state) => state.trucks.favorites);
 
   useEffect(() => {
     dispatch(getTruck(id));
   }, [dispatch]);
+
+  const generateFavoritesList = () => {
+    const data = localStorage.getItem("FavoritesTrucks");
+    if (data) {
+      return dispatch(addToFavorites(JSON.parse(data)));
+    }
+    return dispatch(addToFavorites({}));
+  };
+
+  useEffect(() => {
+    generateFavoritesList();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("FavoritesTrucks", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <div className="container">

@@ -1,18 +1,16 @@
-// import { useState } from "react";
-import CustomToggle from "../CustomToggle/CustomToggle";
 import "./TruckEquipmentToggles.css";
+import CustomToggle from "../CustomToggle/CustomToggle";
 import { useDispatch } from "react-redux";
 import { changeFilter } from "../../redux/filtersSlice";
 
 const TruckEquipmentToggles = () => {
   const dispatch = useDispatch();
-  // const [selectedOption, setSelectedOption] = useState("");
 
   const setBoolKey = (event) => {
     dispatch(changeFilter({ [event.target.value]: event.target.checked }));
   };
 
-  const setStringlKey = (event) => {
+  const setStringKey = (event) => {
     dispatch(
       changeFilter({
         [event.target.value]: event.target.checked
@@ -22,20 +20,24 @@ const TruckEquipmentToggles = () => {
     );
   };
 
+  // const showFavorite = (event) => {
+  //   console.log("ToggleFavoritesFilter:", event.target.checked);
+  // };
+
   return (
     <div className="equipment-filter">
-      {/* <CustomToggle label="Favorites" onChange={setStringlKey} value="hart" /> */}
-      <CustomToggle label="Petrol" onChange={setStringlKey} value="engine" />
-      <CustomToggle label="Diesel" onChange={setStringlKey} value="engine" />
+      {/* <CustomToggle label="Favorites" value="hart" onChange={showFavorite} /> */}
+      <CustomToggle label="Petrol" onChange={setStringKey} value="engine" />
+      <CustomToggle label="Diesel" onChange={setStringKey} value="engine" />
       <CustomToggle label="AC" onChange={setBoolKey} value="AC" />
       <CustomToggle
         label="Automatic"
-        onChange={setStringlKey}
+        onChange={setStringKey}
         value="transmission"
       />
       <CustomToggle
         label="Manual"
-        onChange={setStringlKey}
+        onChange={setStringKey}
         value="transmission"
       />
       <CustomToggle label="Bathroom" onChange={setBoolKey} value="bathroom" />

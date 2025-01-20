@@ -2,14 +2,21 @@ import "./TruckDetailCard.css";
 import { nanoid } from "@reduxjs/toolkit";
 import icons from "../../img/icons.svg";
 import FavoriteToggle from "../FavoriteToggle/FavoriteToggle";
+import { useSelector } from "react-redux";
 
 const TruckDetailCard = ({ item }) => {
+  const favorites = useSelector((state) => state.trucks.favorites);
+  const isFavorite =
+    Object.keys(favorites).includes(item.id) && favorites[item.id];
+  console.log("favorites", favorites);
+  // console.log(item.id, isFavorite);
+
   return (
     <div className="detail-card">
       <div className="details-toppart">
         <div className="details-title">
           <p>{item.name}</p>
-          <FavoriteToggle />
+          <FavoriteToggle id={item.id} checked={isFavorite} />
         </div>
         <div className="details-rating">
           <svg width="16" height="16">

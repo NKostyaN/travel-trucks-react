@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  // showFavorites: false,
   favorite: "",
   location: "",
   transmission: "",
@@ -21,25 +22,20 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    changeLocationFilter: (state, action) => {
-      state.location = action.payload;
-    },
+    // changeLocationFilter: (state, action) => {
+    //   state.location = action.payload;
+    // },
     changeFilter: (state, action) => {
       return {
         ...state,
         ...action.payload,
       };
     },
-    // changeTypeFilter: (state, action) => {
-    //   return {
-    //     ...state,
-    //     ...action.payload,
-    //   };
-    // },
   },
 });
 
 export const selectFilter = (state) => state.filters;
 export const filtersReducer = filtersSlice.reducer;
 
-export const { changeLocationFilter, changeFilter } = filtersSlice.actions;
+export const { changeFilter } = filtersSlice.actions;
+// export const { changeLocationFilter, changeFilter } = filtersSlice.actions;

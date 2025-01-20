@@ -1,41 +1,36 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-// import { fetchTrucks, addContact, deleteContact } from "./trucksOps";
-import { fetchAllTrucks, fetchTrucks, getTruck } from "./trucksOps";
-import { selectFilter } from "./filtersSlice";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchTrucks, getTruck } from "./trucksOps";
 
 const initialState = {
   items: [],
   truck: {},
+  favorites: {},
   page: 1,
   totalResults: 0,
   loading: false,
   error: null,
+  showFavorites: false,
 };
 
 const trucksSlice = createSlice({
   name: "trucks",
   initialState,
   reducers: {
-    reset: () => initialState,
+    reset: (state) => {
+      state.items = [];
+      state.truck = {};
+      state.page = 1;
+    },
     setPage: (state, action) => {
       state.page = action.payload;
+    },
+    addToFavorites: (state, action) => {
+      console.log("addToFavorites", action.payload);
+      Object.assign(state.favorites, action.payload);
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllTrucks.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllTrucks.fulfilled, (state, action) => {
-        state.loading = false;
-        state.items = action.payload;
-        state.totalResults = action.payload.total;
-      })
-      .addCase(fetchAllTrucks.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
       .addCase(fetchTrucks.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -60,7 +55,6 @@ const trucksSlice = createSlice({
       .addCase(getTruck.fulfilled, (state, action) => {
         state.loading = false;
         state.truck = action.payload;
-        console.log(action);
       })
       .addCase(getTruck.rejected, (state, action) => {
         state.loading = false;
@@ -69,23 +63,16 @@ const trucksSlice = createSlice({
   },
 });
 
+
 export const trucksReducer = trucksSlice.reducer;
+
 export const selectTrucks = (state) => {
   return state.trucks.items;
 };
 export const selectTruck = (state) => {
   return state.trucks.truck;
 };
-export const { setPage, reset } = trucksSlice.actions;
-
-export const selectFilteredTrucks = createSelector(
-  [selectTrucks, selectFilter],
-  (trucks, filter) => {
-    // console.log("trucks", trucks);
-    // console.log("filter", filter);
-    return trucks;
-    // return trucks?.filter((truck) =>
-    //   truck.name.toLowerCase().includes(filter.toLowerCase())
-    // );
-  }
-);
+export const selectFavorites = (state) => {
+  return state.favorites;
+};
+export const { setPage, reset, addToFavorites } = trucksSlice.actions;

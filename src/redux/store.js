@@ -7,4 +7,6 @@ const rootReducer = combineReducers({
   filters: filtersReducer,
 });
 
-export const store = configureStore({ reducer: rootReducer });
+export const store = configureStore({
+  reducer: rootReducer,
+});

@@ -1,13 +1,24 @@
-import icons from "../../img/icons.svg";
 import "./FavoriteToggle.css";
+import icons from "../../img/icons.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorites } from "../../redux/trucksSlice";
 
-const FavoriteToggle = ({ checked, onChange, value }) => {
+const FavoriteToggle = ({ id, checked, onChange, value }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.trucks.favorites);
+  const setFavorite = (event) => {
+    dispatch(addToFavorites({ [id]: event.target.checked }));
+    // console.log(`setFavorite [${id}]:`, event.target.checked);
+    // console.log("favorites", favorites);
+    // onChange(event);
+  };
+
   return (
     <label className="favorite-toggle">
       <input
         type="checkbox"
         checked={checked}
-        onChange={onChange}
+        onChange={setFavorite}
         value={value}
       />
       <svg className="favorite-btn" width="24" height="21">
